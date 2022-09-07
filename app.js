@@ -1,3 +1,4 @@
+
 const fs = require('fs');
 const inquirer = require('inquirer');
 const generatePage = require('./src/page-template');
@@ -11,7 +12,7 @@ const promptUser = () => {
       validate: nameInput => {
         if (nameInput) {
           return true;
-        } else {
+        } else { 
           console.log('Please enter your name!');
           return false;
         }
@@ -129,17 +130,15 @@ Add a New Project
 promptUser()
   .then(promptProject)
   .then(portfolioData => {
-    console.log(portfolioData);
-    // will be uncommented in lesson 4
-    // const pageHTML = generatePage(portfolioData);
-    // fs.writeFile('./index.html', pageHTML, err => {
-    //   if (err) throw new Error(err);
-    //   console.log('Page created! Check out index.html in this directory to see it!');
-    // });
+    const pageHTML = generatePage(portfolioData);
+
+    fs.writeFile('./index.html', pageHTML, err => {
+      if (err) throw new Error(err);
+
+      console.log('Page created! Check out index.html in this directory to see it!');
+    });
   });
 
-// const fs = require('fs');
-// const generatePage = require('./src/page-template');
 
 // const pageHTML = generatePage(name, github);
 
